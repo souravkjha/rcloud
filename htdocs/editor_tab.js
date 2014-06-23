@@ -826,14 +826,18 @@ var editor = function () {
 
     function display_date(ds) {
         function pad(n) { return n<10 ? '0'+n : n; }
+        function format_time(date) { return date.getHours() + ':' + pad(date.getMinutes()); }
         if(ds==='none')
             return '';
-        var date = new Date(ds);
-        var diff = Date.now() - date;
+        // this really should be localized
+        var date = new Date(ds), now = Date.now();
+        var diff = now - date;
         if(diff < 24*60*60*1000)
-            return date.getHours() + ':' + pad(date.getMinutes());
-        else
-            return (date.getMonth()+1) + '/' + date.getDate();
+            return format_time(date);
+        else if(diff < 360*24*60*60*1000)
+            return (date.getMonth()+1) + '/' + date.getDate() + ' ' + format_time(date);
+        else return (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getYear()%100 +
+            ' ' + format_time(date);
     }
 
     function populate_comments(comments) {
