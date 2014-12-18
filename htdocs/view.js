@@ -79,5 +79,6 @@ function main() {
     function update_view_url(opts) {
         var url = make_view_url(opts);
         window.history.replaceState("rcloud.notebook", null, url);
+        rcloud.api.set_url(url);
     }
 }
