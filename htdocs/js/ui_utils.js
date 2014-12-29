@@ -483,3 +483,7 @@ ui_utils.prevent_backspace = function($doc) {
             event.preventDefault();
     });
 };
+$("#notebook-title").on('change', function() {
+    //Do calculation and change value of other span2,span3 here
+    alert("here");
+});
