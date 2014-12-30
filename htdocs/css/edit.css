@@ -966,8 +966,11 @@ a.accordion-toggle.right > i {
     left: 6ex;
     pointer-events: none;
     cursor: text;
-    overflow: hidden;
     height: 1.5em;
+    max-width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #forked-from-desc a {
@@ -1153,10 +1156,13 @@ input[type=checkbox].inverse + span:before {
 input[type=checkbox].inverse:checked + span:before {
     content: "\f14a"; 
 }
-span .notebook-title-change {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 50%;
-    word-break: break-all;
+
+/* handling word-wrap of text in different browsers*/
+.notebook-title-row {
+    max-width: 68%;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
